@@ -1,0 +1,82 @@
+﻿@model Worked
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-controller="WorkedCRUD" asp-action="Create" enctype="multipart/form-data" method="post">
+    <div class="form-group">
+        <label asp-for="Name_AZ" class="control-label"></label>
+        <input asp-for="Name_AZ" class="form-control" />
+        <span asp-validation-for="Name_AZ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name_EN" class="control-label"></label>
+        <input asp-for="Name_EN" class="form-control" />
+        <span asp-validation-for="Name_EN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name_RU" class="control-label"></label>
+        <input asp-for="Name_RU" class="form-control" />
+        <span asp-validation-for="Name_RU" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_AZ" class="control-label"></label>
+        <input asp-for="Description_AZ" class="form-control" />
+        <span asp-validation-for="Description_AZ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_EN" class="control-label"></label>
+        <input asp-for="Description_EN" class="form-control" />
+        <span asp-validation-for="Description_EN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_RU" class="control-label"></label>
+        <input asp-for="Description_RU" class="form-control" />
+        <span asp-validation-for="Description_RU" class="text-danger"></span>
+    </div>
+
+
+
+    <div style="width: 600px;" class="imager-container" id="viewer1" name="images">
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Bazada Saxla" class="btn btn-success" />
+    </div>
+
+</form>
+<a asp-controller="WorkedCRUD" asp-action="index" class="btn btn-primary">
+    <spam>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+    </spam>Geriyə
+
+</a>
+
+
+@section addcss{
+    <script src="https://kit.fontawesome.com/1154e1d6ee.js" crossorigin="anonymous"></script>
+    <link href="~/libs/multiple-imager-js/css/imager.css" rel="stylesheet" />
+}
+
+
+@section addjs{
+    <script src="~/libs/jquery/jquery.min.js"></script>
+
+    <script src="~/libs/multiple-imager-js/js/imager.js"></script>
+
+    <script>
+        $('#viewer1').imgadd({
+            tnWidth: '120px',
+            tnHeight: '120px',
+            fontSize: '55px',
+            plusInnerHtml: '',
+            plusBtnClass: undefined
+        });
+    </script>
+}
+

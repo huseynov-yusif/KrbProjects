@@ -1,0 +1,81 @@
+﻿@model WhatWeDo
+
+<form asp-controller="WhatWeDoCRUD" asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name_AZ" class="control-label"></label>
+        <input asp-for="Name_AZ" class="form-control" />
+        <span asp-validation-for="Name_AZ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name_EN" class="control-label"></label>
+        <input asp-for="Name_EN" class="form-control" />
+        <span asp-validation-for="Name_EN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name_RU" class="control-label"></label>
+        <input asp-for="Name_RU" class="form-control" />
+        <span asp-validation-for="Name_RU" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_AZ" class="control-label"></label>
+        <input asp-for="Description_AZ" class="form-control" />
+        <span asp-validation-for="Description_AZ" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_EN" class="control-label"></label>
+        <input asp-for="Description_EN" class="form-control" />
+        <span asp-validation-for="Description_EN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description_RU" class="control-label"></label>
+        <input asp-for="Description_RU" class="form-control" />
+        <span asp-validation-for="Description_RU" class="text-danger"></span>
+    </div>
+
+
+
+
+    <div class="form-group ">
+        <label class="control-label">
+            Image
+        </label>
+        <label for="file" class="image-input">
+            <input name="fileTemp" value="" type="hidden" />
+            <span>x</span>
+        </label>
+        <input name="file" id="file" type="file" accept="image/x-png,image/gif,image/jpeg" />
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Bazada Saxla" class="btn btn-success" />
+    </div>
+
+</form>
+<a asp-controller="WhatWeDoCRUD" asp-action="index" class="btn btn-primary">
+    <spam>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+    </spam>Geriyə
+
+</a>
+
+@section addcss{
+
+    <link href="~/libs/jquery-image-input/image-input.css" rel="stylesheet" />
+}
+
+@section addjs{
+    <script src="~/libs/ckeditor5/ckeditor.js"></script>
+    <script src="~/libs/jquery-image-input/jquery.image-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            ClassicEditor
+                .create(document.querySelector('#Content'))
+                .catch(error => {
+                    console.error(error);
+                });
+        })
+    </script>
+}

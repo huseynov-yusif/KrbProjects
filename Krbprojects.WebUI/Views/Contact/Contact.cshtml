@@ -1,0 +1,104 @@
+﻿@model ContactPost
+<section class="container">
+    <div class="normal">
+        <div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1435847124413 vc_row-no-padding">
+            <div class="wpb_column vc_column_container vc_col-sm-12">
+                <div class="vc_column-inner">
+                    <div class="wpb_wrapper">
+                        <div class="map"
+                             id="map1"
+                             style="height: 550px;"
+                             data-type="ROADMAP"
+                             data-zoom="14"
+                             data-scroll="false"
+                             data-icon="~/assets/2014/11/1400x200demo216785.jpg"
+                             data-address="300 Pennsylvania Ave NW, Washington, DC 20006, USA"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5 class="heading-content style-1"><span>@Contact.Sendusamessage</span></h5>
+
+        <form asp-controller="Contact" asp-action="contact" method="post" class="wpcf7-form">
+            @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+            {
+                <div class="alert alert-success">
+                    @*resource faylindan gelen postsorgudur*@
+                    @Contact.Postsorgu
+                </div>
+            }
+            <div class="col-sm-5 noleftpadding">
+                <input asp-for="Name" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" placeholder="@Contact.Name*" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-sm-5 noleftpadding">
+                <input asp-for="Email" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" placeholder="@Contact.Email*" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+            </div>
+            <div class="col-sm-7 norightpadding">
+                <textarea asp-for="Comment" class="wpcf7-form-control wpcf7-textarea" placeholder="@Contact.Message*"></textarea>
+                <span asp-validation-for="Comment" class="text-danger"></span>
+
+            </div>
+
+            <div class="col-sm-7 norightpadding">
+                <button class="wpcf7-form-control wpcf7-submit">
+                    @Contact.Send
+                </button>
+            </div>
+            <div class="wpcf7-response-output wpcf7-display-none"></div>
+        </form>
+
+        @*<div class="vc_row wpb_row vc_row-fluid vc_custom_1418807519392">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                    <div class="vc_column-inner">
+                        <div class="wpb_wrapper">
+                            <h5 class="heading-content style-1"><span>SEND US A MESSAGE</span></h5>
+                            <div class="vc_empty_space" style="height: 15px;"><span class="vc_empty_space_inner"></span></div>
+                            <div role="form" class="wpcf7" id="wpcf7-f452-p15-o1" lang="en-US" dir="ltr">
+                                <div class="screen-reader-response"></div>
+                                <form asp-controller="Contact" asp-action="contact" method="post" class="wpcf7-form">
+                                    <div style="display: none;">
+                                        <input type="hidden" name="_wpcf7" value="452" />
+                                        <input type="hidden" name="_wpcf7_version" value="4.9.2" />
+                                        <input type="hidden" name="_wpcf7_locale" value="en_US" />
+                                        <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f452-p15-o1" />
+                                        <input type="hidden" name="_wpcf7_container_post" value="15" />
+                                    </div>
+                                    <div class="col-sm-5 noleftpadding">
+                                        <input asp-for="Name" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" placeholder="Name*" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-5 noleftpadding">
+                                        <input asp-for="Email" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" placeholder="SurName*" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-sm-7 norightpadding">
+                                        <textarea asp-for="Comment" class="wpcf7-form-control wpcf7-textarea" placeholder="Message*"></textarea>
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="col-sm-7 norightpadding">
+                                        <button class="wpcf7-form-control wpcf7-submit" >
+                                            post comment
+                                        </button>
+                                    </div>
+                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+</section>
+
+@section addjs{
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}
+

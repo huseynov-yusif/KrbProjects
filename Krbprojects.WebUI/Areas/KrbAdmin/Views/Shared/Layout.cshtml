@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Krb </title>
+    <link href="~/assets/favicons/Logo.png" rel="icon" sizes="192x192" type="image/png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="~/assets/Admin/css/style.css" rel="stylesheet" />
+    <link href="~/assets/Admin/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    @RenderSection("addcss", required: false);
+</head>
+<body class="crm_body_bg">
+
+
+    <nav class="sidebar dark_sidebar">
+        <div class="logo d-flex justify-content-between">
+            <a a class="large_logo" href="index.html">@*<img src="~/assets/turbo-logo-az-24c9ce8421aec1428f697bce5033b652750bbc9262031438fea7f35fc37f8f84.png" alt="">*@</a>
+            <div class="sidebar_close_icon d-lg-none">
+                <i class="ti-close"></i>
+            </div>
+        </div>
+        <ul id="sidebar_menu">
+
+            <li class="">
+                <a asp-area="krbadmin" asp-controller="account" asp-action="logout">
+                    <div class="nav_icon_small">
+
+                    </div>
+                    <div class="nav_title">
+                        <span>Logout</span>
+                    </div>
+                </a>
+            </li>
+            @if (User.HasAccess("admin.users.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="users" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>İstifadəçilər</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.contactpostcrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="contactpostcrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Mesajlar</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.informationcrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="informationcrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Xəbərlər</span>
+                        </div>
+                    </a>
+                </li>
+            }
+
+            @if (User.HasAccess("admin.whatwedocrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="whatwedocrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Xidmətlərimmiz</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.techniquecrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="techniquecrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Texnikalarımız</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.aboutuscrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="aboutuscrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Haqqımızda</span>
+                        </div>
+                    </a>
+                </li>
+            }
+           
+            @if (User.HasAccess("admin.WorkedCRUD.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="WorkedCRUD" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Proyektlərimiz</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.ContactPagePhotocrud.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="ContactPagePhotocrud" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Kontakt Səhifəsinin şəkili</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (User.HasAccess("admin.HomePageCRUD.index"))
+            {
+                <li class="">
+                    <a asp-area="krbadmin" asp-controller="HomePageCRUD" asp-action="index">
+                        <div class="nav_icon_small">
+
+                        </div>
+                        <div class="nav_title">
+                            <span>Əsas Səhifənin şəkili</span>
+                        </div>
+                    </a>
+                </li>
+            }
+            }
+
+        </ul>
+    </nav>
+
+    <div class=" container">
+        <div class="row justify-content-end">
+            <div class="col-sm-10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Libs/jquery/jquery.js"></script>
+
+
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <a href="~/libs/toastr.js/toastr.js.map">~/libs/toastr.js/toastr.js.map</a>
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+    
+
+    @RenderSection("addjs", required: false);
+
+</body>
+
+</html>

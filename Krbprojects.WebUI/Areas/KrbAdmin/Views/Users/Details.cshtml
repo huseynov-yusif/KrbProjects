@@ -1,0 +1,160 @@
+﻿
+@model KrbUser
+@{
+    ViewData["Title"] = "Details";
+}
+<table class="table">
+    <thead>
+        <tr>
+
+            <th scope="col">UserName</th>
+            <th scope="col">Name</th>
+            <th scope="col">SurName</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.UserName</td>
+            <td>@Model.Name</td>
+            <td>@Model.SurName</td>
+            <td>@Model.Email</td>
+        </tr>
+    </tbody>
+</table>
+<div class="form-group row">
+    <div class="col-12">
+
+        <div class="tab-control" role="tabcontrol">
+            <div class="tab-page" id="roles" aria-title="Rollar" selected>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="max-width:100px">
+
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Tuple<int, string, bool> item in @ViewBag.Roles)
+                        {
+                            <tr>
+                                <th>
+                                    <input type="checkbox"
+                                           @(item.Item3 ? "checked" : "")
+                                           data-role-id="@item.Item1"
+                                           data-user-id="@Model.Id" />
+                                </th>
+                                <th>
+                                    @item.Item2
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-page" id="principals" aria-title="Səlahiyyətlər">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="max-width:100px">
+
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Tuple<string, bool> item in @ViewBag.Principals)
+                        {
+                            <tr>
+                                <th>
+                                    <input type="checkbox"
+                                           @(item.Item2 ? "checked" : "")
+                                           data-user-id="@Model.Id"
+                                           data-principal-name="@item.Item1" />
+                                </th>
+                                <th>
+                                    @item.Item1
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a asp-controller="users" asp-action="index" class="btn btn-primary">
+
+    <spam>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+    </spam>Geriyə
+
+</a>
+@section addcss{
+    <link href="~/Libs/tab-control/tab-control.css" rel="stylesheet" />
+    <link href="~/Libs/toastr.js/toastr.min.css" rel="stylesheet" />
+}
+@section addjs{
+    <script src="~/Libs/tab-control/tab-control.js"></script>
+    <script src="~/Libs/toastr.js/toastr.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('input[type="checkbox"][data-role-id]').change(function (e) {
+            let obj = $(e.currentTarget).data();
+            obj.selected = $(e.currentTarget).is(':checked');
+            $.ajax({url: '@Url.Action("SetRole")',
+                type: 'POST',
+                data: obj,
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.error == false) {
+                        toastr.success(response.massage, 'UĞURLU');
+                        return;
+                    }
+                    console.log(response)
+                    toastr.warning(response.massage, 'XƏTA');
+                    $(e.currentTarget).prop('checked', !obj.selected);
+                },
+                error: function (response) {
+                    console.warn(response);
+                }
+            });
+        });
+        $('input[type="checkbox"][data-principal-name]').change(function (e) {
+            let obj = $(e.currentTarget).data();
+            obj.selected = $(e.currentTarget).is(':checked');
+            $.ajax({url: '@Url.Action("SetPrincipals")',
+                type: 'POST',
+                data: obj,
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: 'json',
+                success: function (response) {
+                    if (response.error == false) {
+                        toastr.success(response.message, 'UĞURLU');
+                        return;
+                    }
+                    console.log(response)
+                    toastr.warning(response.message, 'XƏTA');
+                    $(e.currentTarget).prop('checked', !obj.selected);
+                },
+                error: function (response) {
+                    console.warn(response);
+                }
+            });
+        });
+
+    });
+
+
+    </script>
+}
+
